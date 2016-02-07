@@ -1,0 +1,64 @@
+.word {
+    position: relative;
+	float: left;
+    height: 30px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 2px;
+	padding-bottom: 4px;
+	margin-right: 2px;
+    margin-bottom: 2px;
+    font-size: 14px;
+}
+
+.letter-counter {
+    position: absolute;
+    z-index: 10;
+    right: 2px;
+    color: black;
+    font-size: 12px;
+    background-color: whitesmoke;
+}
+
+.word.wrong {
+    background-color: indianred;
+    color: white;
+	margin-right: 4px;
+}
+
+.word.hidden-word {
+	background-color: indianred;
+}
+
+.word.hidden-word p.word {
+    visibility: hidden;
+}
+
+.word.hidden-word div.letter-counter {
+    visibility: visible;
+}
+
+.word.visible-word {
+    color: black;
+	background-color: beige;
+}
+
+.word.visible-word p.word {
+    visibility: visible;
+}
+
+.word.visible-word div.letter-counter {
+    visibility: hidden;
+}
+
+.word.default-visible-word {
+    color: black;
+}
+
+.word.default-visible-word div.word {
+    visibility: visible;
+}
+
+.word.default-visible-word div.letter-counter {
+    visibility: hidden;
+}

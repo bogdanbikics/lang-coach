@@ -1,0 +1,38 @@
+extends page
+
+block content
+  div(class='container-fluid')
+    div(class='row')
+        
+        div(class='col-md-3 smaller')
+            div(class='col-md-12 nested')
+                div(class='panel panel-default')
+                    div(class='panel-body')
+                        form(data-bind='submit: $root.check', autocomplete='off')
+                            input(id='tip', type='text', class='text-input', data-bind='textInput: checkWord')
+                            input(id='check', type='submit', class='button' value='Check')
+            div(class='col-md-12 nested')
+                div(class='panel panel-default')
+                    div(class='panel-body', data-bind='foreach: filteredItems')
+                        div(class='word wrong')
+                            p(data-bind='text: $data')
+                            
+        div(class='col-md-6 smaller')
+            div(class='panel panel-default')
+                div(class='panel-body')
+                    div(class='container-words', data-bind='foreach: words')
+                        div(data-bind='css: style')
+                            p(class='word', data-bind='text: value')
+                            div(class='letter-counter', data-bind='text: points')      
+
+
+        div(class='col-md-3 smaller')
+            div(class='panel panel-default')
+                div(class='panel-body')
+                    p(data-bind='text: pointStatus')
+                    div(class='progress')
+                        div(class='progress-bar progress-bar-success', 
+                            data-bind='style: {width: progress() + "%"}', 
+                            role='progressbar', aria-valuenow='40', 
+                            aria-valuemin='0', aria-valuemax='250')
+                        span(class='sr-only') 40% Complete (success)
