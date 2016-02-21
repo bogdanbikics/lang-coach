@@ -1,19 +1,22 @@
 var express = require('express');
 var router = express.Router();
+var database = require('./database.js')
 
-require('./database', function (db) {
-    database.init();
-});
+database.create();
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
     res.render('admin');
 });
 
-router.post('/actions/upload', function (req, res, next) {
-    require('./database', function (db) {
-        database.write(req.guessText);
-        res.send('Oh yeah!: ' + database.read());
+router.post('/actions/insert', function (req, res, next) {
+    database.insert(req.body.guessText);
+    res.send("Insert happened: " + req.body.guessText);
+});
+
+router.get('/actions/read', function (req, res, next) {
+    database.selectAll(function (err, rows) {
+        res.send("Read happened: "  + JSON.stringify(rows));
     });
 });
 
