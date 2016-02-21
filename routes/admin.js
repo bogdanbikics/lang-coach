@@ -16,7 +16,7 @@ router.post('/actions/insert', function (req, res, next) {
 
 router.get('/actions/read', function (req, res, next) {
     database.selectAll(function (err, rows) {
-        res.send("Read happened: "  + JSON.stringify(rows));
+        res.send(JSON.stringify(rows));
     });
 });
 

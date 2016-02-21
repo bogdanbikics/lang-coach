@@ -47,9 +47,9 @@ function TextConverter() {
 	}
 }
 
-function ViewModel() {
+function ViewModel(text) {
 	var self = this;
-	var text = "Российская Федерация Lorem Ipsum is simply dummy text, of the printing and typesetting industry. Lorem Ipsum: has been the industry's \"standard\" dummy text ever since the 1500's, when an unknown printer took a galley of type and scrambled it to make a type specimen book.";
+	//var text = "Российская Федерация Lorem Ipsum is simply dummy text, of the printing and typesetting industry. Lorem Ipsum: has been the industry's \"standard\" dummy text ever since the 1500's, when an unknown printer took a galley of type and scrambled it to make a type specimen book.";
 
 	self.words = ko.observableArray(new TextConverter().textConverter(text, new Array()));
 	self.wrongWords = ko.observableArray();
@@ -102,5 +102,9 @@ function ViewModel() {
 }
 
 $(document).ready(function () {
-	ko.applyBindings(new ViewModel());
+    $.getJSON("/admin/actions/read", function(data) {
+       console.log("Hey" + data);
+       var text = data[0].text;
+	   ko.applyBindings(new ViewModel(text));
+    });       
 });
