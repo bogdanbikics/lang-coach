@@ -14,6 +14,7 @@
     "jquery": "~2.2.1",
     "knockout": "~3.4.0",
     "requirejs": "~2.1.22",
-    "text": "requirejs-text#~2.0.14"
+    "text": "requirejs-text#~2.0.14",
+    "require-jade": "~0.0.3"
   }
 }

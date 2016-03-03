@@ -1,7 +1,15 @@
 
 define([
-    '../bower_components/require-jade/jade!../views/search',
-    './search'], function (searchJade, searchJs) {
+    'jquery',
+    'knockout',
+    'require-jade!../views/search',
+    'search'
+    ], function (
+        $,
+        ko,
+        searchJade, 
+        searchJs
+        ) {
 
         function WordModel(style, value) {
             var self = this;

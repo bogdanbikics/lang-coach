@@ -1,4 +1,4 @@
-define('search', [], function() {
+define('search', ['jquery', 'knockout'], function($, ko) {
     function SearchViewModel(params) {
         var self = this;
 
