@@ -23,8 +23,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bootstrap', express.static(path.join(__dirname + '/node_modules/bootstrap')));
-app.use('/jquery', express.static(path.join(__dirname + '/node_modules/jquery')));
-app.use('/knockout', express.static(path.join(__dirname + '/node_modules/knockout')));
+// app.use('/jquery', express.static(path.join(__dirname + '/node_modules/jquery')));
+// app.use('/requirejs', express.static(path.join(__dirname + '/node_modules/requirejs')));
+// app.use('/requirejs-text', express.static(path.join(__dirname + '/node_modules/requirejs-text')));
+// app.use('/knockout', express.static(path.join(__dirname + '/node_modules/knockout')));
+app.use('/bower_components', express.static(path.join(__dirname + '/bower_components')));
+app.use('/views', express.static(path.join(__dirname + '/views')));
 
 app.use('/', routes);
 app.use('/admin', admin);

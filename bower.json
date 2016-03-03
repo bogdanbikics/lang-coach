@@ -1,0 +1,19 @@
+{
+  "name": "lang-coach-client",
+  "description": "",
+  "main": "index.html",
+  "authors": [
+    "Bogdán Bikics <bogdan.bikics@gmail.com>"
+  ],
+  "license": "MIT",
+  "moduleType": [
+    "amd"
+  ],
+  "homepage": "",
+  "dependencies": {
+    "jquery": "~2.2.1",
+    "knockout": "~3.4.0",
+    "requirejs": "~2.1.22",
+    "text": "requirejs-text#~2.0.14"
+  }
+}
