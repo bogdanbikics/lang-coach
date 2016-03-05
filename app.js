@@ -23,10 +23,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bootstrap', express.static(path.join(__dirname + '/node_modules/bootstrap')));
-// app.use('/jquery', express.static(path.join(__dirname + '/node_modules/jquery')));
-// app.use('/requirejs', express.static(path.join(__dirname + '/node_modules/requirejs')));
-// app.use('/requirejs-text', express.static(path.join(__dirname + '/node_modules/requirejs-text')));
-// app.use('/knockout', express.static(path.join(__dirname + '/node_modules/knockout')));
 app.use('/bower_components', express.static(path.join(__dirname + '/bower_components')));
 app.use('/views', express.static(path.join(__dirname + '/views')));
 
@@ -41,9 +37,6 @@ app.use(function(req, res, next) {
 });
 
 // error handlers
-
-// development error handler
-// will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
@@ -54,8 +47,6 @@ if (app.get('env') === 'development') {
   });
 }
 
-// production error handler
-// no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {

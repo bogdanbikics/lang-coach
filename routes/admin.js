@@ -6,7 +6,7 @@ database.create();
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-    res.render('admin');
+    res.render('admin/admin');
 });
 
 router.post('/actions/insert', function (req, res, next) {
