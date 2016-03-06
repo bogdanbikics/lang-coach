@@ -16,10 +16,11 @@ define([
         TextConverter
         ) {
 
-        function ViewModel(text) {
+        function ViewModel(excercise) {
             var self = this;
-
-            self.words = ko.observableArray(new TextConverter().textConverter(text, new Array()));
+            
+            self.title = ko.observable(excercise.title);
+            self.words = ko.observableArray(new TextConverter().textConverter(excercise.text, new Array()));
 
             self.onWordCheck = function (w) {
                 if (w.style() != "word visible-word ") {
@@ -44,7 +45,7 @@ define([
                     template: pointsHtml
                 });
 
-                var viewModel = new ViewModel(data[0].text);
+                var viewModel = new ViewModel(data[0]);
                 ko.applyBindings(viewModel);
             });
 

@@ -13,6 +13,8 @@ block content
                             
         div(class='col-md-6 smaller')
             div(class='panel panel-default')
+                div(class='panel-heading')
+                    p(data-bind='text: title')
                 div(class='panel-body')
                     div(class='container-words', data-bind='foreach: words')
                         div(data-bind='css: style')
