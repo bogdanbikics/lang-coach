@@ -48,13 +48,13 @@ define([
         $(document).ready(function () {
             $.getJSON("/admin/actions/read", function (data) {
                 
-                var viewModel = new ViewModel(data[0].text);
                 var searchHtml = searchJade();
                 ko.components.register('search-widget', {
                     viewModel: searchJs,
                     template: searchHtml
                 });
-                
+                console.log(data[0]);
+                var viewModel = new ViewModel(data[0].text);
                 ko.applyBindings(viewModel);
             });
 

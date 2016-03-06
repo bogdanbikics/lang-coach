@@ -1,25 +1,30 @@
+var fs = require('fs');
 var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database(':memory:');
+var file = "test.db";
+var exists = fs.existsSync(file);
+var db = new sqlite3.Database(file);
 
 module.exports = {
 
     create: function () {
         db.serialize(function () {
-            db.run('CREATE TABLE guessText (text TEXT)');
+            if (!exists) {
+                db.run('CREATE TABLE guessText (title TEXT, text TEXT)');
+            }
         });
     },
 
-    insert: function (value) {
+    insert: function (title, text) {
         db.serialize(function () {
-            var stmt = db.prepare('INSERT INTO guessText VALUES (?)');
-            stmt.run(value);
+            var stmt = db.prepare('INSERT INTO guessText (title, text) VALUES (?, ?)');
+            stmt.run(title, text);
             stmt.finalize();
         });
     },
 
     selectAll: function (whenReady) {
         db.serialize(function () {
-            db.all('SELECT rowid, text FROM guessText', whenReady);
+            db.all('SELECT * FROM guessText', whenReady);
         });
     }
 };

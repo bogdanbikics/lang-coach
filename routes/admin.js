@@ -10,8 +10,8 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/actions/insert', function (req, res, next) {
-    database.insert(req.body.guessText);
-    res.send("Insert happened: " + req.body.guessText);
+    database.insert(req.body.title, req.body.guessText);
+    res.send("Insert happened: " + req.body.title + " " + req.body.guessText);
 });
 
 router.get('/actions/read', function (req, res, next) {
