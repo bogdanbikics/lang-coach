@@ -9,17 +9,22 @@ p {
 }
 
 .col-md-3.smaller {
-	padding: 5px;	
+	padding: 0px;	
 }
 
 .col-md-4.smaller {
-	padding: 5px;	
+	padding: 0px;	
 }
 
 .col-md-6.smaller {
-	padding: 5px;	
+	padding: 0px;	
 }
 
 .col-md-12.nested {
 	padding: 0px;	
+}
+
+.panel-default {
+    margin: 5px;
+    margin-bottom: 10px;
 }

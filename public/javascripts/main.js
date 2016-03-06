@@ -11,21 +11,34 @@ define([
         ko,
         searchJade,
         pointsJade,
-        searchViewModel,
-        pointsViewModel,
+        SearchViewModel,
+        PointsViewModel,
         TextConverter
         ) {
 
+        function PointsModel(words) {
+            var self = this;
+            self.totalPoints = ko.computed(function () {
+                var sum = 0;
+                $.each(words(), function (pos, word) {
+                    sum += word.points;
+                });
+                return sum;
+            }, self);
+            self.pointsAchieved = ko.observable(0);
+        }
+
         function ViewModel(excercise) {
             var self = this;
-            
+
             self.title = ko.observable(excercise.title);
             self.words = ko.observableArray(new TextConverter().textConverter(excercise.text, new Array()));
+            self.pointsModel = new PointsModel(self.words);
 
             self.onWordCheck = function (w) {
                 if (w.style() != "word visible-word ") {
                     w.style("word visible-word ");
-                    pointsViewModel.pointsModel.pointsAchieved(pointsViewModel.pointsModel.pointsAchieved() + w.points);
+                    self.pointsModel.pointsAchieved(self.pointsModel.pointsAchieved() + w.points);
                 }
             };
         }
@@ -35,13 +48,13 @@ define([
 
                 var searchHtml = searchJade();
                 ko.components.register('search-widget', {
-                    viewModel: searchViewModel,
+                    viewModel: SearchViewModel,
                     template: searchHtml
                 });
 
                 var pointsHtml = pointsJade();
                 ko.components.register('points-widget', {
-                    viewModel: pointsViewModel,
+                    viewModel: PointsViewModel,
                     template: pointsHtml
                 });
 
