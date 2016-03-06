@@ -1,12 +1,12 @@
-define('search', ['jquery', 'knockout'], function($, ko) {
+define('search-viewmodel', ['jquery', 'knockout'], function($, ko) {
     function SearchViewModel(params) {
         var self = this;
 
         self.checkWord = ko.observable("");
         self.wrongWords = ko.observableArray();
         
-        self.onSubmit = params.onSubmit;
         self.words = params.correctWords;
+        self.onSubmit = params.onSubmit;
         
         self.unique = function (list) {
             var result = [];
@@ -20,9 +20,7 @@ define('search', ['jquery', 'knockout'], function($, ko) {
             var hit = false;
             $.each(self.words(), function (p, w) {
                 if (self.checkWord().toLowerCase() === w.value.toLowerCase()) {
-                    console.log(self.onSubmit)
                     self.onSubmit(w);
-                    hit = true;
                 }
             });
             if (!hit) {

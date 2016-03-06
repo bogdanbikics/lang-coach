@@ -5,7 +5,8 @@ requirejs.config({
         "knockout": "../bower_components/knockout/dist/knockout",
         "require-jade": "../bower_components/require-jade/jade",
         "text-converter": "text-converter",
-        "search": "search"
+        "search-viewmodel": "search-viewmodel",
+        "points-viewmodel": "points-viewModel"
     }
 });
 
