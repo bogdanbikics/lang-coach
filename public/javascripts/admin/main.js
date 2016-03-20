@@ -6,6 +6,7 @@ define([
         function ViewModel(data) {
             self = this;
             self.excercises = ko.observableArray();
+            
             $.each(data, function(i, d) {
                 self.excercises.push(d);
             });

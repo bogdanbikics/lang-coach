@@ -7,15 +7,17 @@ block content
     div(class='container-fluid')
         div(class='row')
             div(class='col-md-6')
-                div(class='panel panel-default col-md-12')
-                    form(action='admin/actions/insert', class='form-horizontal', method='post')
-                        div(class='form-group col-md-12')
-                            input(type='text', class='form-control', name='title', placeholder='Title')
-                        div(class='form-group col-md-12')
-                            textarea(class='form-control', rows='15', cols='50', name='guessText', placeholder='Text')
-                        div(class='form-group col-md-12')
-                            input(type='submit', class='btn btn-primary', value='Submit')                   
+               
+                // upload-widget
+                div(class='panel panel-default')
+                    div(class='panel-heading') New Excersise  
+                    div(class='panel-body')
+                        form(action='admin/actions/insert', class='form-horizontal', method='post')
+                            div(class='form-group col-md-12')
+                                input(type='text', class='form-control', name='title', placeholder='Title')
+                            div(class='form-group col-md-12')
+                                textarea(class='form-control', rows='15', cols='50', name='guessText', placeholder='Text')
+                            div(class='form-group col-md-12')
+                                input(type='submit', class='btn btn-primary', value='Submit')                   
             div(class='col-md-6')
-                div(data-bind='foreach: excercises')
-                    p(data-bind='text: title')
-                    p(data-bind='text: text')
+                

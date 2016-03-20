@@ -28,3 +28,10 @@ p {
     margin: 5px;
     margin-bottom: 10px;
 }
+
+.selectable-row {
+    cursor: pointer;
+}
+.selectable-row:hover {
+    background-color: gray;
+}

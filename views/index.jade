@@ -19,7 +19,17 @@ block content
                     div(class='container-words', data-bind='foreach: words')
                         div(data-bind='css: style')
                             p(class='word', data-bind='text: value')
-                            div(class='letter-counter', data-bind='text: points')      
+                            div(class='letter-counter', data-bind='text: points')   
+               
+        div(class='col-md-3 smaller')                    
+                // excercise-list
+                div(class='panel panel-default')
+                    div(class='panel-heading') Excersises    
+                    div(class='panel-body')
+                        table(data-bind='foreach: excercises' style="width: 100%")
+                            tr(class='selectable-row' data-bind='click: $parent.selectExcercise')
+                                td
+                                    p(data-bind='text: title')
 
 
 

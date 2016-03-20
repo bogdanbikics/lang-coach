@@ -28,18 +28,26 @@ define([
             self.pointsAchieved = ko.observable(0);
         }
 
-        function ViewModel(excercise) {
+        function ViewModel(excercises) {
             var self = this;
 
-            self.title = ko.observable(excercise.title);
-            self.words = ko.observableArray(new TextConverter().textConverter(excercise.text, new Array()));
+            self.excercises = ko.observableArray(excercises);
+            self.excercise = ko.observable(self.excercises()[0]);
+            self.title = ko.observable(self.excercise().title);
+            self.words = ko.observableArray(new TextConverter().textConverter(self.excercise().text, new Array()));
             self.pointsModel = new PointsModel(self.words);
-
+            
             self.onWordCheck = function (w) {
                 if (w.style() != "word visible-word ") {
                     w.style("word visible-word ");
                     self.pointsModel.pointsAchieved(self.pointsModel.pointsAchieved() + w.points);
                 }
+            };
+            
+            self.selectExcercise = function(currentExcercise) {
+                self.excercise(currentExcercise);
+                self.words(new TextConverter().textConverter(self.excercise().text, new Array()));
+                self.title(self.excercise().title);
             };
         }
 
@@ -58,7 +66,7 @@ define([
                     template: pointsHtml
                 });
 
-                var viewModel = new ViewModel(data[0]);
+                var viewModel = new ViewModel(data);
                 ko.applyBindings(viewModel);
             });
 
