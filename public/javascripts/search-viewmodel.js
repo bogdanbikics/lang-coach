@@ -24,7 +24,7 @@ define('search-viewmodel', ['jquery', 'knockout'], function($, ko) {
             });
             if (!hit) {
                 self.excercise().wrongWords.push(self.checkWord().toLowerCase());
-                self.excercise().wrongWords(self.unique(self.wrongWords()));
+                self.excercise().wrongWords(self.unique(self.excercise().wrongWords()));
                 self.excercise().wrongWords.sort();
             }
             self.checkWord("");
