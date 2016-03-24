@@ -3,9 +3,7 @@ define('search-viewmodel', ['jquery', 'knockout'], function($, ko) {
         var self = this;
 
         self.checkWord = ko.observable("");
-        self.wrongWords = ko.observableArray();
-        
-        self.words = params.correctWords;
+        self.excercise = params.excercise;
         self.onSubmit = params.onSubmit;
         
         self.unique = function (list) {
@@ -18,15 +16,16 @@ define('search-viewmodel', ['jquery', 'knockout'], function($, ko) {
 
         self.check = function () {
             var hit = false;
-            $.each(self.words(), function (p, w) {
+            $.each(self.excercise().words(), function (p, w) {
                 if (self.checkWord().toLowerCase() === w.value.toLowerCase()) {
                     self.onSubmit(w);
+                    hit = true;
                 }
             });
             if (!hit) {
-                self.wrongWords.push(self.checkWord().toLowerCase());
-                self.wrongWords(self.unique(self.wrongWords()));
-                self.wrongWords.sort();
+                self.excercise().wrongWords.push(self.checkWord().toLowerCase());
+                self.excercise().wrongWords(self.unique(self.wrongWords()));
+                self.excercise().wrongWords.sort();
             }
             self.checkWord("");
         }
@@ -34,9 +33,9 @@ define('search-viewmodel', ['jquery', 'knockout'], function($, ko) {
         self.filteredItems = ko.computed(function () {
             var filter = self.checkWord().toLowerCase();
             if (!filter) {
-                return self.wrongWords();
+                return self.excercise().wrongWords();
             } else {
-                return ko.utils.arrayFilter(self.wrongWords(), function (item) {
+                return ko.utils.arrayFilter(self.excercise().wrongWords(), function (item) {
                     return item.toLowerCase().startsWith(filter);
                 });
             }

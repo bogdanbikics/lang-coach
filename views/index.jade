@@ -8,7 +8,7 @@ block content
     div(class='row')
         
         div(class='col-md-3 smaller')
-            search-widget(params='onSubmit: onWordCheck, correctWords: $root.excercise().words')
+            search-widget(params='onSubmit: onWordCheck, excercise: $root.excercise')
             points-widget(params='pointsModel: $root.excercise().pointsModel')
                             
         div(class='col-md-6 smaller')

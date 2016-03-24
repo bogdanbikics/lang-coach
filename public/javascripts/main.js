@@ -32,6 +32,7 @@ define([
             var self = this;
             self.title = data.title;
             self.words = ko.observableArray(new TextConverter().textConverter(data.text, new Array()));
+            self.wrongWords = ko.observableArray();
             self.pointsModel = new PointsModel(self.words);
         }
 
@@ -45,6 +46,7 @@ define([
             })
             
             self.excercise = ko.observable(self.excercises()[0]);
+            
             self.onWordCheck = function (w) {
                 if (w.style() != "word visible-word ") {
                     w.style("word visible-word ");
