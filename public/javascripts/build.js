@@ -7,7 +7,7 @@ requirejs.config({
         "xregexp": "../bower_components/xregexp/xregexp-all",
         "text-converter": "text-converter",
         "search-viewmodel": "search-viewmodel",
-        "points-viewmodel": "points-viewModel"
+        "points-viewmodel": "points-viewmodel"
     }
 });
 
