@@ -15,6 +15,7 @@
     "knockout": "~3.4.0",
     "requirejs": "~2.1.22",
     "text": "requirejs-text#~2.0.14",
-    "require-jade": "~0.0.3"
+    "require-jade": "~0.0.3",
+    "xregexp": "~3.1.1"
   }
 }

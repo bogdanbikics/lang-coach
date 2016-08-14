@@ -1,4 +1,4 @@
-define(['knockout'], function (ko) {
+define(['knockout', 'xregexp'], function (ko, XRegExp) {
     function WordModel(style, value) {
         var self = this;
         self.style = ko.observable(style);
@@ -11,7 +11,11 @@ define(['knockout'], function (ko) {
         var self = this;
 
         var searchFirstNonLetter = function (text) {
-            return text.search(/[\d|[^\u0000-\uFFFF]]/g);
+            XRegExp.install('astral');
+            var regex = XRegExp("\\PL");
+            var nonLetter = XRegExp.match(text, regex);
+            
+            return text.indexOf(nonLetter);
         }
 
         var addWordElements = function (text, array) {
