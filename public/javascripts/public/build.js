@@ -9,7 +9,8 @@ requirejs.config({
         "search-viewmodel": "./viewmodels/search-viewmodel",
         "points-viewmodel": "./viewmodels/points-viewmodel",
         "points-model": "./models/points-model",
-        "excercise-model": "models/excercise-model"
+        "excercise-model": "./models/excercise-model",
+        "word-model": "./models/word-model"
     }
 });
 

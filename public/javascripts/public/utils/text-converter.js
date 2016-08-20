@@ -1,11 +1,4 @@
-define(['knockout', 'xregexp'], function (ko, XRegExp) {
-    function WordModel(style, value) {
-        var self = this;
-        self.style = ko.observable(style);
-        self.value = value;
-        self.points = value.length;
-    }
-
+define(['knockout', 'xregexp', 'word-model'], function (ko, XRegExp, WordModel) {
     function TextConverter() {
         var self = this;
 
