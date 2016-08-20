@@ -6,7 +6,6 @@ define(['knockout', 'xregexp'], function (ko, XRegExp) {
         self.points = value.length;
     }
 
-
     function TextConverter() {
         var self = this;
 

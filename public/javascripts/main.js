@@ -4,13 +4,15 @@ define([
     'knockout',
     'require-jade!../views/widgets/search',
     'require-jade!../views/widgets/points',
+    'require-jade!../views/widgets/excercise-list',
     'search-viewmodel',
-    "points-viewmodel",
+    'points-viewmodel',
     'text-converter'], function (
         $,
         ko,
         searchJade,
         pointsJade,
+        excerciseListJade,
         SearchViewModel,
         PointsViewModel,
         TextConverter
@@ -41,11 +43,11 @@ define([
             var self = this;
             
             self.excercises = ko.observableArray();
-            data.forEach(function(e) {
+            data.forEach(function (e) {
                 console.log('pushing data');
                 self.excercises.push(new ExcerciseModel(e));
-            })
-            
+            });
+
             self.excercise = ko.observable(self.excercises()[0]);
             
             self.onWordCheck = function (w) {
@@ -60,9 +62,15 @@ define([
             };
         }
 
-        $(document).ready(function () {
-            $.getJSON("/admin/actions/read", function (data) {
+        function ExcerciseListViewModel(params) {
+            var self = this;
+            self.excerciseList = params.excerciseList;
+            self.onSelect = params.onSelect;
+        }
 
+        $(document).ready(function () {
+
+            $.getJSON("/admin/actions/read", function (data) {
                 var searchHtml = searchJade();
                 ko.components.register('search-widget', {
                     viewModel: SearchViewModel,
@@ -75,9 +83,14 @@ define([
                     template: pointsHtml
                 });
 
+                var excerciseListHtml = excerciseListJade();
+                ko.components.register('excercise-list-widget', {
+                    viewModel: ExcerciseListViewModel,
+                    template: excerciseListHtml
+                });  
+
                 var viewModel = new ViewModel(data);
                 ko.applyBindings(viewModel);
             });
-
         });
     });

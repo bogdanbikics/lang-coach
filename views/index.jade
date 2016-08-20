@@ -8,29 +8,18 @@ block content
     div(class='row')
         
         div(class='col-md-3 smaller')
-            search-widget(params='onSubmit: onWordCheck, excercise: $root.excercise')
+            search-widget(params='onSubmit: $root.onWordCheck, excercise: $root.excercise')
             points-widget(params='pointsModel: $root.excercise().pointsModel')
                             
         div(class='col-md-6 smaller')
             div(class='panel panel-default')
                 div(class='panel-heading')
-                    p(data-bind='text: excercise().title')
+                    p(data-bind='text: $root.excercise().title')
                 div(class='panel-body')
-                    div(class='container-words', data-bind='foreach: excercise().words')
+                    div(class='container-words', data-bind='foreach: $root.excercise().words')
                         div(data-bind='css: style')
                             p(class='word', data-bind='text: value')
                             div(class='letter-counter', data-bind='text: points')   
                
-        div(class='col-md-3 smaller')                    
-                // excercise-list
-                div(class='panel panel-default')
-                    div(class='panel-heading') Excersises    
-                    div(class='panel-body')
-                        table(data-bind='foreach: excercises' style="width: 100%")
-                            tr(class='selectable-row' data-bind='click: $parent.selectExcercise')
-                                td
-                                    p(data-bind='text: title')
-
-
-
-            
+        div(class='col-md-3 smaller')
+            excercise-list-widget(params='excerciseList: $root.excercises, onSelect: $root.selectExcercise')
