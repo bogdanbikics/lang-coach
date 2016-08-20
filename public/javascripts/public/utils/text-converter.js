@@ -13,7 +13,7 @@ define(['knockout', 'xregexp', 'word-model'], function (ko, XRegExp, WordModel) 
         var addWordElements = function (text, array) {
             if (text.length > 0) {
                 $.each(text.split(" "), function (pos, word) {
-                    array.push(new WordModel("word hidden-word", word));
+                    array.push(new WordModel("word hidden-word", word, word.length));
                 });
             }
         }
@@ -25,7 +25,7 @@ define(['knockout', 'xregexp', 'word-model'], function (ko, XRegExp, WordModel) 
             }
             else {
                 addWordElements(text.substring(0, index), array);
-                array.push(new WordModel("word default-visible-word", text.charAt(index)));
+                array.push(new WordModel("word default-visible-word", text.charAt(index), 0));
                 self.textConverter(text.substring(index + 1), array)
             }
             return array;

@@ -23,7 +23,6 @@ define([
             
             self.excercises = ko.observableArray();
             data.forEach(function (e) {
-                console.log('pushing data');
                 self.excercises.push(new ExcerciseModel(e));
             });
 
@@ -50,22 +49,17 @@ define([
         $(document).ready(function () {
 
             $.getJSON("/admin/actions/read", function (data) {
-                var searchHtml = searchJade();
                 ko.components.register('search-widget', {
                     viewModel: SearchViewModel,
-                    template: searchHtml
+                    template: searchJade()
                 });
-
-                var pointsHtml = pointsJade();
                 ko.components.register('points-widget', {
                     viewModel: PointsViewModel,
-                    template: pointsHtml
+                    template: pointsJade()
                 });
-
-                var excerciseListHtml = excerciseListJade();
                 ko.components.register('excercise-list-widget', {
                     viewModel: ExcerciseListViewModel,
-                    template: excerciseListHtml
+                    template: excerciseListJade()
                 });  
 
                 var viewModel = new ViewModel(data);
