@@ -2,12 +2,12 @@
 define([
     'jquery',
     'knockout',
-    'require-jade!../views/widgets/search',
-    'require-jade!../views/widgets/points',
-    'require-jade!../views/widgets/excercise-list',
+    'require-jade!../../views/widgets/search',
+    'require-jade!../../views/widgets/points',
+    'require-jade!../../views/widgets/excercise-list',
     'search-viewmodel',
     'points-viewmodel',
-    'text-converter'], function (
+    'excercise-model'], function (
         $,
         ko,
         searchJade,
@@ -15,29 +15,8 @@ define([
         excerciseListJade,
         SearchViewModel,
         PointsViewModel,
-        TextConverter
+        ExcerciseModel
         ) {
-            
-        function PointsModel(words) {
-            var self = this;
-            self.totalPoints = ko.computed(function () {
-                var sum = 0;
-                $.each(words(), function (pos, word) {
-                    sum += word.points;
-                });
-                return sum;
-            }, self);
-            self.pointsAchieved = ko.observable(0);
-        }
-
-        function ExcerciseModel(data) {
-            var self = this;
-            self.title = data.title;
-            console.log(data.text);
-            self.words = ko.observableArray(new TextConverter().textConverter(data.text, new Array()));
-            self.wrongWords = ko.observableArray();
-            self.pointsModel = new PointsModel(self.words);
-        }
 
         function ViewModel(data) {
             var self = this;
