@@ -5,7 +5,9 @@ define('points-model', ['jquery', 'knockout'], function ($, ko) {
         self.totalPoints = ko.computed(function () {
             var sum = 0;
             $.each(words(), function (pos, word) {
-                sum += word.points;
+                if(word.style() == "word hidden-word") {
+                    sum += word.points;
+                }
             });
             return sum;
         }, self);
