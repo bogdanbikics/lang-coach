@@ -1,18 +1,35 @@
 define([
     'jquery',
-    'knockout'],
-    function ($, ko) {
+    'knockout',
+    'require-jade!../../views/widgets/excercise-list'],
+    function ($, ko, excerciseListJade) {
 
         function ViewModel(data) {
             self = this;
             self.excercises = ko.observableArray();
-            
-            $.each(data, function(i, d) {
+            self.excercise = ko.observable(self.excercises()[0]);
+
+            $.each(data, function (i, d) {
                 self.excercises.push(d);
             });
+
+            self.selectExcercise = function(currentExcercise) {
+                self.excercise(currentExcercise);
+            };
+        }
+
+        function ExcerciseListViewModel(params) {
+            var self = this;
+            self.excerciseList = params.excerciseList;
+            self.onSelect = params.onSelect;
         }
 
         $(document).ready(function () {
+            ko.components.register('excercise-list-widget', {
+                viewModel: ExcerciseListViewModel,
+                template: excerciseListJade()
+            });
+
             $.getJSON("/admin/actions/read", function (data) {
                 console.log(data);
                 var viewModel = new ViewModel(data);
