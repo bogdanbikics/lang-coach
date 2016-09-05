@@ -41,6 +41,8 @@
 .word.visible-word {
     color: black;
 	background-color: beige;
+    animation-name: pulse-color, pulse;
+    animation-duration: 0.5s;
 }
 
 .word.visible-word p.word {
@@ -61,4 +63,15 @@
 
 .word.default-visible-word div.letter-counter {
     visibility: hidden;
+}
+
+@keyframes pulse-color {
+    from {background-color: indianred;}
+    to {background-color: beige;}
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(2); }
+    100% { transform: scale(1); }
 }
