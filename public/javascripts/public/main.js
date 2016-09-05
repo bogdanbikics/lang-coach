@@ -31,7 +31,6 @@ define([
             self.onWordCheck = function (w) {
                 if (w.style() != "word visible-word ") {
                     w.style("word visible-word ");
-                    // w.addEventListener("animationend", function() { console.log("Hey"); }, false);
                     self.excercise().pointsModel.pointsAchieved(self.excercise().pointsModel.pointsAchieved() + w.points);
                 }
             };

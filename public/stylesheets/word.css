@@ -43,6 +43,7 @@
 	background-color: beige;
     animation-name: pulse-color, pulse;
     animation-duration: 0.5s;
+    z-index: 1; position:relative;
 }
 
 .word.visible-word p.word {
