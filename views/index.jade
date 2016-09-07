@@ -1,5 +1,10 @@
 extends page
 
+mixin each(val)
+    <!-- ko foreach: !{val} -->
+    block
+    <!-- /ko -->
+
 block script
     script(type='text/javascript', data-main='/javascripts/public/build', src='bower_components/requirejs/require.js')
 
@@ -8,7 +13,7 @@ block content
     div(class='row')
         
         div(class='col-md-3 smaller')
-            search-widget(params='onSubmit: $root.onWordCheck, excercise: $root.excercise')
+            search-widget(params='onSubmit: $root.onWordCheck, excercise: $root.excercise, pointLabelModels: $root.pointLabelModels')
             points-widget(params='pointsModel: $root.excercise().pointsModel')
                             
         div(class='col-md-6 smaller')
@@ -19,7 +24,11 @@ block content
                     div(class='container-words', data-bind='foreach: $root.excercise().words')
                         div(data-bind='css: style')
                             p(class='word', data-bind='text: value')
-                            div(class='letter-counter', data-bind='text: points')   
+                            div(class='letter-counter', data-bind='text: points')        
+                    div(class='word-points-container')
+                        +each('$root.pointLabelModels')
+                            div(class='word-points')
+                                p(data-bind='text: $data.achievedPoints()')
                
         div(class='col-md-3 smaller')
             excercise-list-widget(params='excerciseList: $root.excercises, onSelect: $root.selectExcercise')

@@ -25,9 +25,9 @@ define([
             data.forEach(function (e) {
                 self.excercises.push(new ExcerciseModel(e));
             });
-
             self.excercise = ko.observable(self.excercises()[0]);
-            
+            self.pointLabelModels = ko.observableArray();
+
             self.onWordCheck = function (w) {
                 if (w.style() != "word visible-word ") {
                     w.style("word visible-word ");
@@ -64,6 +64,11 @@ define([
 
                 var viewModel = new ViewModel(data);
                 ko.applyBindings(viewModel);
+
+                $('.word-points-container').on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function () {
+                    console.log('Shifting PointLabelModels array...');
+                    viewModel.pointLabelModels.shift();
+                });
             });
         });
     });

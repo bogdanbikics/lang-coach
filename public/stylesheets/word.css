@@ -41,9 +41,16 @@
 .word.visible-word {
     color: black;
 	background-color: beige;
-    animation-name: pulse-color, pulse;
+    animation-name: pulse;
     animation-duration: 0.5s;
-    z-index: 1; position:relative;
+    z-index: 1; 
+    position:relative;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); background-color: indianred; }
+    50% { transform: scale(2); }
+    100% { transform: scale(1); background-color: beige; }
 }
 
 .word.visible-word p.word {
@@ -66,13 +73,29 @@
     visibility: hidden;
 }
 
-@keyframes pulse-color {
-    from {background-color: indianred;}
-    to {background-color: beige;}
+.word-points {
+    background-color: green;
+    border-radius: 15px;
+    font-size: 25pt;
+    font: 'Times New Roman';
+    padding: 8px;
+    color: white;
+    left: 50%;
+    top: 100px;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    position: absolute;
+    z-index: 10;
+    opacity: 0;
+
+    animation-name: float-away;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
 }
 
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(2); }
-    100% { transform: scale(1); }
+@keyframes float-away {
+    0% { top: 100px; opacity: 0; }
+    50% { opacity: 1; }
+    100% { top: 50px; opacity: 0; }
 }
