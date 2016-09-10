@@ -3,7 +3,7 @@ define('excercise-model', ['jquery', 'knockout', 'points-model', 'text-converter
 
         function ExcerciseModel(data) {
             var self = this;
-
+            
             self.id = data.id;
             self.text = data.text;
             self.title = data.title;

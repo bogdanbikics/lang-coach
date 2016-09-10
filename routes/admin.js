@@ -3,7 +3,7 @@ var router = express.Router();
 var database = require('./database.js')
 
 database.create();
-// database.insert('Test', '#This is a test!')
+database.insert('Test', '#This is a test!')
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {

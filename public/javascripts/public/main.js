@@ -49,6 +49,7 @@ define([
         $(document).ready(function () {
 
             $.getJSON("/admin/actions/read", function (data) {
+                console.log(data)
                 ko.components.register('search-widget', {
                     viewModel: SearchViewModel,
                     template: searchJade()

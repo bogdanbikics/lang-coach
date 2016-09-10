@@ -5,3 +5,5 @@ div(class='panel panel-default')
             tr(class='selectable-row', data-bind='click: $parent.onSelect')
                 td
                     p(data-bind='text: $data.title')
+    div(class='panel-footer') 
+        input(type='button', class='btn btn-primary', value='New Excercise', data-bind='click: $parent.addNewElement')

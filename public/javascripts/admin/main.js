@@ -7,13 +7,29 @@ define([
         function ViewModel(data) {
             self = this;
             self.excercises = ko.observableArray();
-            $.each(data, function (i, d) {
-                self.excercises.push(d);
-            });
+
+            self.updateExcercises = function(jsonData) {
+                self.excercises([]);
+                $.each(jsonData, function (i, d) {
+                    self.excercises.push(d);
+                });
+            }
+            
+            self.updateExcercises(data);
             self.excercise = ko.observable(self.excercises()[0]);
 
             self.selectExcercise = function(currentExcercise) {
                 self.excercise(currentExcercise);
+            };
+
+            self.addNewElement = function () {
+                var newExcercise = { id: '', text: '', title: 'New Excercise' };
+                $.post("admin/actions/insert", newExcercise, function (returnedData) {
+                    $.getJSON("admin/actions/read", function (data) {
+                        self.updateExcercises(data);
+                        self.excercise(newExcercise);
+                    });
+                });
             };
         }
 
@@ -29,7 +45,7 @@ define([
                 template: excerciseListJade()
             });
 
-            $.getJSON("/admin/actions/read", function (data) {
+            $.getJSON("admin/actions/read", function (data) {
                 console.log(data);
                 var viewModel = new ViewModel(data);
                 ko.applyBindings(viewModel);
