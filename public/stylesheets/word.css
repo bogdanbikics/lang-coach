@@ -77,7 +77,6 @@
     background-color: green;
     border-radius: 15px;
     font-size: 25pt;
-    font: 'Times New Roman';
     padding: 8px;
     color: white;
     left: 50%;
@@ -92,10 +91,11 @@
     animation-name: float-away;
     animation-duration: 2s;
     animation-iteration-count: 1;
+    animation-delay: 0.2s;
 }
 
 @keyframes float-away {
     0% { top: 100px; opacity: 0; }
-    50% { opacity: 1; }
+    50% { opacity: .5; }
     100% { top: 50px; opacity: 0; }
 }

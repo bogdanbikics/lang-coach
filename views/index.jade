@@ -27,7 +27,7 @@ block content
                             div(class='letter-counter', data-bind='text: points')        
                     div(class='word-points-container')
                         +each('$root.pointLabelModels')
-                            div(class='word-points')
+                            div(class='label word-points')
                                 p(data-bind='text: $data.achievedPoints()')
                
         div(class='col-md-3 smaller')
