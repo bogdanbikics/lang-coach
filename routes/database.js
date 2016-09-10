@@ -9,7 +9,7 @@ module.exports = {
     create: function () {
         db.serialize(function () {
             if (!exists) {
-                db.run('CREATE TABLE guessText (title TEXT, text TEXT)');
+                db.run('CREATE TABLE guessText (id INTEGER PRIMARY KEY, title TEXT, text TEXT)');
             }
         });
     },
@@ -20,6 +20,14 @@ module.exports = {
             stmt.run(title, text);
             stmt.finalize();
         });
+    },
+
+    update: function (id, title, text) {
+        db.serialize(function () {
+            var stmt = db.prepare('UPDATE guessText SET title=?, text=? WHERE id=?');
+            stmt.run(title, text, id);
+            stmt.finalize();
+        })
     },
 
     selectAll: function (whenReady) {

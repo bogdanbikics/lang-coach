@@ -7,11 +7,10 @@ define([
         function ViewModel(data) {
             self = this;
             self.excercises = ko.observableArray();
-            self.excercise = ko.observable(self.excercises()[0]);
-
             $.each(data, function (i, d) {
                 self.excercises.push(d);
             });
+            self.excercise = ko.observable(self.excercises()[0]);
 
             self.selectExcercise = function(currentExcercise) {
                 self.excercise(currentExcercise);
