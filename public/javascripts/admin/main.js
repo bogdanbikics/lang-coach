@@ -8,28 +8,35 @@ define([
             self = this;
             self.excercises = ko.observableArray();
 
-            self.updateExcercises = function(jsonData) {
-                self.excercises([]);
-                $.each(jsonData, function (i, d) {
+            self.addNewElement = function () {
+                var newExcercise = { id: '', text: '', title: 'New Excercise' };
+                self.excercises.push(newExcercise);
+                $.post("admin/actions/insert", newExcercise, function (returnedData) {
+                    var data = JSON.parse(returnedData);
+                    newExcercise.id = data.id;
+                });
+            };
+
+            self.updateExcercise = function () {
+                console.log(ko.toJSON(self.excercise()));
+                $.post("admin/actions/update", self.excercise(), function(returnedData) {
+                    console.log(returnedData);
+                });
+            };
+
+            if (data.length == 0) {
+                self.addNewElement();
+            }
+            else {
+                $.each(data, function (i, d) {
                     self.excercises.push(d);
                 });
             }
-            
-            self.updateExcercises(data);
+
             self.excercise = ko.observable(self.excercises()[0]);
 
-            self.selectExcercise = function(currentExcercise) {
+            self.selectExcercise = function (currentExcercise) {
                 self.excercise(currentExcercise);
-            };
-
-            self.addNewElement = function () {
-                var newExcercise = { id: '', text: '', title: 'New Excercise' };
-                $.post("admin/actions/insert", newExcercise, function (returnedData) {
-                    $.getJSON("admin/actions/read", function (data) {
-                        self.updateExcercises(data);
-                        self.excercise(newExcercise);
-                    });
-                });
             };
         }
 

@@ -6,32 +6,34 @@ var db = new sqlite3.Database(file);
 
 module.exports = {
 
-    create: function () {
-        db.serialize(function () {
+    create: () => {
+        db.serialize(() => {
             if (!exists) {
                 db.run('CREATE TABLE guessText (id INTEGER PRIMARY KEY, title TEXT, text TEXT)');
             }
         });
     },
 
-    insert: function (title, text) {
-        db.serialize(function () {
+    insert: (title, text, whenReady) => {
+        db.serialize(() => {
             var stmt = db.prepare('INSERT INTO guessText (title, text) VALUES (?, ?)');
-            stmt.run(title, text);
+            stmt.run([title, text], () => {
+                db.get('SELECT last_insert_rowid() as id', whenReady);
+            });
             stmt.finalize();
         });
     },
 
-    update: function (id, title, text) {
-        db.serialize(function () {
+    update: (id, title, text) => {
+        db.serialize(() => {
             var stmt = db.prepare('UPDATE guessText SET title=?, text=? WHERE id=?');
             stmt.run(title, text, id);
             stmt.finalize();
         })
     },
 
-    selectAll: function (whenReady) {
-        db.serialize(function () {
+    selectAll: (whenReady) => {
+        db.serialize(() => {
             db.all('SELECT * FROM guessText', whenReady);
         });
     }

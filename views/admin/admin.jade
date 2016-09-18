@@ -12,8 +12,7 @@ block content
                 div(class='panel panel-default')
                     div(class='panel-heading') Excersise  
                     div(class='panel-body')
-                        form(action='admin/actions/update', class='form-horizontal', method='post')
-                            input(type='hidden', name='id' data-bind='value: $root.excercise().id')
+                        form(action='admin/actions/update', class='form-horizontal', data-bind='submit: $root.updateExcercise')
                             div(class='form-group col-md-12')
                                 input(type='text', class='form-control', name='title', placeholder='Title' data-bind='value: $root.excercise().title')
                             div(class='form-group col-md-12')
