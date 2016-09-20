@@ -15,6 +15,11 @@ router.post('/actions/insert', (req, res, next) => {
     });
 });
 
+router.post('/actions/delete', (req, res, next) => {
+    database.delete(req.body.id);
+    res.send("true");
+});
+
 router.post('/actions/update', function (req, res, next) {
     database.update(req.body.id, req.body.title, req.body.text);
     res.send("true");

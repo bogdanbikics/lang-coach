@@ -14,6 +14,14 @@ module.exports = {
         });
     },
 
+    delete: (id) => {
+        db.serialize(() => {
+            var stmt = db.prepare('DELETE FROM guessText WHERE id=?');
+            stmt.run(id);
+            stmt.finalize();            
+        });
+    },
+
     insert: (title, text, whenReady) => {
         db.serialize(() => {
             var stmt = db.prepare('INSERT INTO guessText (title, text) VALUES (?, ?)');

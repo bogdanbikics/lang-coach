@@ -1,9 +1,11 @@
 div(class='panel panel-default')
-    div(class='panel-heading') Excersises    
+    div(class='panel-heading')
+        h3(class='panel-title') Excersises    
     div(class='panel-body')
-        table(data-bind='foreach: excerciseList', style='width: 100%')
-            tr(class='selectable-row', data-bind='click: $parent.onSelect')
-                td
-                    p(data-bind='text: $data.title')
+        div(data-bind='foreach: excerciseList', class='list-group', style='width: 100%')
+            a(href='#', class='list-group-item', data-bind='click: $parent.onSelect')
+                span(data-bind='text: $data.title')
+                button(type='button', class='close', style='display: inline-block', data-bind='click: $root.deleteExcercise')
+                    span(aria-hidden='true')&times;
     div(class='panel-footer') 
         input(type='button', class='btn btn-primary', value='New Excercise', data-bind='click: $parent.addNewElement')

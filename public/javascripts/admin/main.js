@@ -1,15 +1,26 @@
 define([
     'jquery',
     'knockout',
+    'excercise-model',
     'require-jade!../../views/widgets/excercise-list'],
-    function ($, ko, excerciseListJade) {
+    function ($, ko, ExcerciseModel, excerciseListJade) {
 
         function ViewModel(data) {
             self = this;
             self.excercises = ko.observableArray();
+            if (data.length == 0) {
+                self.addNewElement();
+            }
+            else {
+                $.each(data, function (i, d) {
+                    self.excercises.push(new ExcerciseModel(d));
+                });
+            }
+            self.excercise = ko.observable(self.excercises()[0]);
 
             self.addNewElement = function () {
-                var newExcercise = { id: '', text: '', title: 'New Excercise' };
+                var newExcerciseData = { id: '', text: '', title: 'New Excercise' };
+                var newExcercise = new ExcerciseModel(newExcerciseData);
                 self.excercises.push(newExcercise);
                 $.post("admin/actions/insert", newExcercise, function (returnedData) {
                     var data = JSON.parse(returnedData);
@@ -18,26 +29,23 @@ define([
             };
 
             self.updateExcercise = function () {
-                console.log(ko.toJSON(self.excercise()));
                 $.post("admin/actions/update", self.excercise(), function(returnedData) {
                     console.log(returnedData);
                 });
             };
 
-            if (data.length == 0) {
-                self.addNewElement();
-            }
-            else {
-                $.each(data, function (i, d) {
-                    self.excercises.push(d);
-                });
-            }
 
-            self.excercise = ko.observable(self.excercises()[0]);
 
             self.selectExcercise = function (currentExcercise) {
                 self.excercise(currentExcercise);
             };
+
+            self.deleteExcercise = function () {
+                $.post("admin/actions/delete", self.excercise(), function(returnedData) {
+                    self.excercises.remove(self.excercise());
+                    console.log(returnedData);
+                });
+            }
         }
 
         function ExcerciseListViewModel(params) {
