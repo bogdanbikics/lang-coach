@@ -26,3 +26,6 @@ public/system/lib
 nbproject/
 .idea/
 atlassian-ide-plugin.xml
+
+# Database #
+test.db
