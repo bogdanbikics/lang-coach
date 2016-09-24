@@ -8,18 +8,8 @@ define([
         function ViewModel(data) {
             self = this;
             self.excercises = ko.observableArray();
-            if (data.length == 0) {
-                self.addNewElement();
-            }
-            else {
-                $.each(data, function (i, d) {
-                    self.excercises.push(new ExcerciseModel(d));
-                });
-            }
-            self.excercise = ko.observable(self.excercises()[0]);
-
             self.addNewElement = function () {
-                var newExcerciseData = { id: '', text: '', title: 'New Excercise' };
+                var newExcerciseData = { id: '', text: 'Text', title: 'New Excercise' };
                 var newExcercise = new ExcerciseModel(newExcerciseData);
                 self.excercises.push(newExcercise);
                 $.post("admin/actions/insert", newExcercise, function (returnedData) {
@@ -28,6 +18,16 @@ define([
                 });
             };
 
+            if (data.length == 0) {
+                self.addNewElement();
+            }
+            else {
+                $.each(data, function (i, d) {
+                    self.excercises.push(new ExcerciseModel(d));
+                });
+            }
+
+            self.excercise = ko.observable(self.excercises()[0]);
             self.updateExcercise = function () {
                 $.post("admin/actions/update", self.excercise(), function(returnedData) {
                     console.log(returnedData);

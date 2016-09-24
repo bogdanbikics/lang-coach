@@ -10,7 +10,8 @@ block content
                
                 // upload-widget
                 div(class='panel panel-default')
-                    div(class='panel-heading') Excersise  
+                    div(class='panel-heading')
+                        h3(class='panel-title') Excersise
                     div(class='panel-body')
                         form(action='admin/actions/update', class='form-horizontal', data-bind='submit: $root.updateExcercise')
                             div(class='form-group col-md-12')
@@ -18,7 +19,7 @@ block content
                             div(class='form-group col-md-12')
                                 textarea(class='form-control', rows='15', cols='50', name='guessText', placeholder='Text' data-bind='textInput: $root.excercise().text')
                             div(class='form-group col-md-12')
-                                input(type='submit', class='btn btn-primary', value='Submit')                   
+                                input(type='submit', class='btn btn-primary', value='Update')                   
             div(class='col-md-6 smaller')
                 excercise-list-widget(params='excerciseList: $root.excercises, onSelect: $root.selectExcercise')
                 

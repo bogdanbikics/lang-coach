@@ -10,7 +10,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/actions/insert', (req, res, next) => {
-    database.insert(req.body.title, req.body.guessText, (err, row) => {
+    database.insert(req.body.title, req.body.text, (err, row) => {
         res.send(JSON.stringify(row));
     });
 });
